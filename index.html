@@ -1,34 +1,168 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <title>هدية لك 🌸</title>
-    <style>
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            background-color: #ffe6f0;
-            margin-top: 100px;
-        }
-        h1 {
-            color: #ff3399;
-        }
-        p {
-            color: #660066;
-            font-size: 20px;
-        }
-        audio {
-            margin-top: 20px;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>هدية رمضان 💖</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    background:linear-gradient(135deg,#ffb6c1,#ff69b4);
+    font-family:'Cairo',sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    overflow:hidden;
+}
+
+/* قلوب المطر */
+.heart{
+    position:fixed;
+    top:-10px;
+    color:#fff;
+    font-size:20px;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh);
+    }
+}
+
+h1{
+    color:white;
+    font-size:35px;
+    animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+    100%{transform:translateY(0);}
+}
+
+#loginBox{
+    background:rgba(255,255,255,0.2);
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 0 15px white;
+}
+
+input{
+    padding:8px;
+    border:none;
+    border-radius:8px;
+    text-align:center;
+}
+
+button{
+    padding:8px 15px;
+    border:none;
+    border-radius:8px;
+    margin-top:10px;
+    background:white;
+    cursor:pointer;
+}
+
+#content{
+    display:none;
+    color:white;
+}
+
+.letters{
+    margin-top:20px;
+}
+
+.letter{
+    display:inline-block;
+    padding:12px 18px;
+    margin:10px;
+    background:rgba(255,255,255,0.3);
+    border-radius:12px;
+    cursor:pointer;
+    font-size:22px;
+    transition:0.3s;
+}
+
+.letter:hover{
+    background:white;
+    color:#ff69b4;
+}
+
+.message{
+    margin-top:15px;
+    font-size:18px;
+}
+</style>
 </head>
+
 <body>
-    <h1>🌸 إليك هذه الهدية 🌸</h1>
-    <p>أتمنى لك يوم رائع ومليء بالفرحة والسعادة!</p>
-    
-    <audio controls autoplay>
-        <source src="song.mp3" type="audio/mpeg">
-        المتصفح لا يدعم تشغيل الموسيقى
-    </audio>
+
+<audio autoplay loop>
+    <source src="love.mp3" type="audio/mpeg">
+</audio>
+
+<div id="loginBox">
+    <h1>رمضان معاكي أحلى 🌙💖</h1>
+    <p>افتحي الباسورد أول حرف من اسمك S</p>
+    <input type="password" id="pass">
+    <br>
+    <button onclick="checkPass()">دخول</button>
+</div>
+
+<div id="content">
+    <h1>رمضان أحلى معاكي Sohila 🌙✨</h1>
+    <p>افتحي الجوابات يقمر 💌</p>
+
+    <div class="letters">
+        <div class="letter" onclick="showMsg(1)">1️⃣</div>
+        <div class="letter" onclick="showMsg(2)">2️⃣</div>
+        <div class="letter" onclick="showMsg(3)">3️⃣</div>
+    </div>
+
+    <div id="msg" class="message"></div>
+</div>
+
+<script>
+function checkPass(){
+    let pass=document.getElementById("pass").value;
+    if(pass==="S"){
+        document.getElementById("loginBox").style.display="none";
+        document.getElementById("content").style.display="block";
+    }else{
+        alert("❌ باسورد غلط");
+    }
+}
+
+function showMsg(num){
+    let message="";
+    if(num==1){
+        message="أول جواب 💖: وجودك في حياتي أحلى نعمة.";
+    }
+    if(num==2){
+        message="تاني جواب 🌙: رمضان دايماً أحلى وانتي معايا.";
+    }
+    if(num==3){
+        message="تالت جواب ✨: ربنا يخليكي ليا ويفرح قلبك دايماً.";
+    }
+    document.getElementById("msg").innerText=message;
+}
+
+/* إنشاء قلوب المطر */
+setInterval(()=>{
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(Math.random()*3+2)+"s";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),5000);
+},300);
+</script>
+
 </body>
 </html>
